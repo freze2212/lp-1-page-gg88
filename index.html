@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GG88 - Trang Chủ Chính Thức</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
+            min-height: -webkit-fill-available;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Montserrat', sans-serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* Video Background Container */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bg-video {
+            display: none;
+        }
+
+        /* Responsive Video Switch */
+        @media (min-width: 769px) {
+            .bg-video.pc-video {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                transform: translate(-50%, -50%);
+                object-fit: cover;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bg-video.mobile-video {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+            }
+        }
+
+        /* Overlay layer for better button contrast */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.1) 0%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 0, 0, 0.45) 100%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* CTA Wrapper */
+        .cta-wrapper {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* PC CTA Position */
+        @media (min-width: 769px) {
+            .cta-wrapper {
+                bottom: 11vh;
+            }
+        }
+
+        /* Mobile CTA Position */
+        @media (max-width: 768px) {
+            .cta-wrapper {
+                bottom: 6vh;
+                width: 88%;
+                max-width: 360px;
+            }
+        }
+
+        /* Glowing Red-Yellow CTA Button */
+        .cta-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 18px 46px;
+            font-size: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #ff2a2a 0%, #ff6b00 45%, #ffd200 100%);
+            border-radius: 50px;
+            border: 2px solid #fff5a6;
+            cursor: pointer;
+            box-shadow: 
+                0 0 25px rgba(255, 60, 0, 0.75),
+                0 0 50px rgba(255, 180, 0, 0.5),
+                inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                inset 0 -3px 6px rgba(180, 0, 0, 0.6);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            animation: pulse-glow 2s infinite alternate ease-in-out;
+            user-select: none;
+        }
+
+        /* Inner light shimmer effect */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: light-sweep 3.2s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        /* Outer pulsating ring */
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 56px;
+            border: 2px solid rgba(255, 215, 0, 0.7);
+            animation: ripple-ring 2s infinite ease-out;
+            pointer-events: none;
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button .icon-arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover & Active Effects */
+        .cta-button:hover {
+            transform: scale(1.06) translateY(-2px);
+            box-shadow: 
+                0 0 35px rgba(255, 50, 0, 0.9),
+                0 0 70px rgba(255, 200, 0, 0.7),
+                inset 0 2px 6px rgba(255, 255, 255, 0.95),
+                inset 0 -3px 8px rgba(180, 0, 0, 0.7);
+        }
+
+        .cta-button:hover .icon-arrow {
+            transform: translateX(4px);
+        }
+
+        .cta-button:active {
+            transform: scale(0.97) translateY(1px);
+            box-shadow: 
+                0 0 15px rgba(255, 50, 0, 0.8),
+                0 0 30px rgba(255, 200, 0, 0.6);
+        }
+
+        /* Mobile Adjustments for Button */
+        @media (max-width: 768px) {
+            .cta-button {
+                width: 100%;
+                padding: 16px 28px;
+                font-size: 19px;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 
+                    0 0 20px rgba(255, 42, 42, 0.7),
+                    0 0 40px rgba(255, 210, 0, 0.4),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                    inset 0 -3px 6px rgba(180, 0, 0, 0.6);
+            }
+            100% {
+                box-shadow: 
+                    0 0 35px rgba(255, 42, 42, 0.95),
+                    0 0 65px rgba(255, 210, 0, 0.7),
+                    inset 0 2px 6px rgba(255, 255, 255, 0.95),
+                    inset 0 -3px 8px rgba(180, 0, 0, 0.8);
+            }
+        }
+
+        @keyframes light-sweep {
+            0% {
+                left: -70%;
+            }
+            30%, 100% {
+                left: 140%;
+            }
+        }
+
+        @keyframes ripple-ring {
+            0% {
+                transform: scale(0.98);
+                opacity: 0.9;
+            }
+            70% {
+                transform: scale(1.12);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1.12);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video Backgrounds -->
+    <div class="video-container">
+        <!-- PC Video -->
+        <video class="bg-video pc-video" autoplay loop muted playsinline webkit-playsinline preload="auto">
+            <source src="GT9_0497.mp4" type="video/mp4">
+        </video>
+        <!-- Mobile Video -->
+        <video class="bg-video mobile-video" autoplay loop muted playsinline webkit-playsinline preload="auto">
+            <source src="grok-video-2b9b001f-7315-4173-86e3-744accd6d88b.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Soft Dark/Vignette Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Call To Action Button -->
+    <div class="cta-wrapper">
+        <a href="#" id="ctaBtn" class="cta-button">
+            <span>
+                ĐĂNG KÝ NGAY
+                <svg class="icon-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </a>
+    </div>
+
+    <!-- Configuration & Script -->
+    <script>
+        /**
+         * ===============================================
+         * CẤU HÌNH LINK ĐÍCH THEO TỪNG TÊN MIỀN (DOMAIN)
+         * ===============================================
+         */
+        const DOMAIN_CONFIG = {
+            // Danh sách ánh xạ: "tên miền truy cập": "link đích muốn chuyển tới"
+            // (Không phân biệt chữ hoa, chữ thường)
+            domains: {
+                "g8qt.com": "https://www.gg8826.com/?id=380330276",
+                "www.g8qt.com": "https://www.gg8826.com/?id=380330276",
+                "gg88.com": "https://gg88.com",
+                "www.gg88.com": "https://gg88.com",
+                "gg88.vn": "https://gg88.vn",
+                "gg88vn.vip": "https://gg88vn.vip",
+                "localhost": "https://www.gg8826.com/?id=380330276",
+                "127.0.0.1": "https://www.gg8826.com/?id=380330276"
+            },
+            // Link mặc định nếu domain hiện tại không nằm trong danh sách trên
+            defaultLink: "https://gg88.com",
+
+            // Thời gian tự động chuyển trang nếu không ấn nút (8000ms = 8 giây)
+            autoRedirectDelay: 8000
+        };
+
+        /**
+         * Hàm lấy link đích dựa theo domain hiện tại
+         */
+        function getTargetUrl() {
+            const currentHost = window.location.hostname.toLowerCase();
+            
+            // 1. Khớp chính xác domain
+            if (DOMAIN_CONFIG.domains[currentHost]) {
+                return DOMAIN_CONFIG.domains[currentHost];
+            }
+
+            // 2. Khớp theo subdomain hoặc domain gốc
+            for (const [domain, url] of Object.entries(DOMAIN_CONFIG.domains)) {
+                const cleanDom = domain.toLowerCase().replace(/^www\./, '');
+                if (currentHost === cleanDom || currentHost.endsWith('.' + cleanDom)) {
+                    return url;
+                }
+            }
+
+            // 3. Sử dụng link mặc định
+            return DOMAIN_CONFIG.defaultLink;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const targetUrl = getTargetUrl();
+            const ctaBtn = document.getElementById('ctaBtn');
+            let isRedirected = false;
+
+            // Gán link đích vào button
+            if (ctaBtn) {
+                ctaBtn.href = targetUrl;
+            }
+
+            function redirectToTarget() {
+                if (isRedirected) return;
+                isRedirected = true;
+                window.location.href = targetUrl;
+            }
+
+            // Tự động chuyển hướng sau 8 giây nếu chưa ấn nút
+            const autoRedirectTimer = setTimeout(() => {
+                redirectToTarget();
+            }, DOMAIN_CONFIG.autoRedirectDelay);
+
+            // Xử lý khi người dùng ấn vào nút
+            if (ctaBtn) {
+                ctaBtn.addEventListener('click', (e) => {
+                    clearTimeout(autoRedirectTimer);
+                    e.preventDefault();
+                    redirectToTarget();
+                });
+            }
+
+            // Tự động phát video mượt mà trên mọi thiết bị
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.muted = true;
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        const startPlayOnTouch = () => {
+                            video.play();
+                            window.removeEventListener('touchstart', startPlayOnTouch);
+                            window.removeEventListener('click', startPlayOnTouch);
+                        };
+                        window.addEventListener('touchstart', startPlayOnTouch, { once: true });
+                        window.addEventListener('click', startPlayOnTouch, { once: true });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
