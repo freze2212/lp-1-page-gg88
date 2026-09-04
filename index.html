@@ -319,21 +319,23 @@
          */
         function getTargetUrl(config) {
             const currentHost = window.location.hostname.toLowerCase().replace(/^www\./, '');
-            const domains = config.domains || {};
+            const allEntries = { ...(config.domains || {}), ...(config || {}) };
 
-            // 1. Khớp chính xác domain (sau khi đã tự động lược bỏ www)
-            for (const [rawDomain, url] of Object.entries(domains)) {
+            // 1. Khớp chính xác domain
+            for (const [rawDomain, val] of Object.entries(allEntries)) {
+                if (['defaultLink', 'autoRedirectDelay', 'domains', '_default'].includes(rawDomain)) continue;
                 const cleanDom = rawDomain.toLowerCase().replace(/^www\./, '');
                 if (currentHost === cleanDom) {
-                    return url;
+                    return typeof val === 'object' ? (val.main_url || val.url || config.defaultLink) : val;
                 }
             }
 
-            // 2. Khớp theo subdomain (ví dụ m.g8vip.net -> g8vip.net)
-            for (const [rawDomain, url] of Object.entries(domains)) {
+            // 2. Khớp theo subdomain
+            for (const [rawDomain, val] of Object.entries(allEntries)) {
+                if (['defaultLink', 'autoRedirectDelay', 'domains', '_default'].includes(rawDomain)) continue;
                 const cleanDom = rawDomain.toLowerCase().replace(/^www\./, '');
                 if (currentHost.endsWith('.' + cleanDom)) {
-                    return url;
+                    return typeof val === 'object' ? (val.main_url || val.url || config.defaultLink) : val;
                 }
             }
 
