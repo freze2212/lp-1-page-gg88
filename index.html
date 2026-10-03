@@ -300,7 +300,7 @@
     <script>
         // Cấu hình mặc định dự phòng (nếu không fetch được file domains.json)
         let DOMAIN_CONFIG = {
-            defaultLink: "https://gg88.com",
+            defaultLink: "#",
             autoRedirectDelay: 8000,
             domains: {
                 "g8vip.net": "https://www.gg8830.com/?id=488903050ster?id=276090506ster?id=276090506",
@@ -340,7 +340,7 @@
             }
 
             // 3. Link mặc định
-            return config.defaultLink || "https://gg88.com";
+            return config.defaultLink || "#";
         }
 
         document.addEventListener('DOMContentLoaded', async () => {
