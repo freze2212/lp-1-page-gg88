@@ -302,14 +302,6 @@
     "messenger_url": "https://gg8850.com/?id=360341602",
     "telegram_url": "https://gg8850.com/?id=360341602"
   },
-  "g8tong.cc": {
-    "main_url": "https://gg8854.com/?id=850980998",
-    "messenger_url": "https://gg8854.com/?id=850980998"
-  },
-  "www.g8tong.cc": {
-    "main_url": "https://gg8854.com/?id=850980998",
-    "messenger_url": "https://gg8854.com/?id=850980998"
-  },
   "quocte88.com": {
     "main_url": "https://www.gg8838.com/?id=985799454",
     "messenger_url": "https://www.gg8838.com/?id=985799454",
@@ -319,5 +311,13 @@
     "main_url": "https://www.gg8838.com/?id=985799454",
     "messenger_url": "https://www.gg8838.com/?id=985799454",
     "telegram_url": "https://www.gg8838.com/?id=985799454"
+  },
+  "g8tong.cc": {
+    "main_url": "https://gg8854.com/?id=850980998",
+    "messenger_url": "https://gg8854.com/?id=850980998"
+  },
+  "www.g8tong.cc": {
+    "main_url": "https://gg8854.com/?id=850980998",
+    "messenger_url": "https://gg8854.com/?id=850980998"
   }
 }
