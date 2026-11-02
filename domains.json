@@ -364,16 +364,6 @@
     "messenger_url": "https://gg8854.com/?id=465777975",
     "telegram_url": "https://gg8854.com/?id=465777975"
   },
-  "g8tong.us": {
-    "main_url": "https://09gg88.com/?id=311292941",
-    "messenger_url": "https://09gg88.com/?id=311292941",
-    "telegram_url": "https://09gg88.com/?id=311292941"
-  },
-  "www.g8tong.us": {
-    "main_url": "https://09gg88.com/?id=311292941",
-    "messenger_url": "https://09gg88.com/?id=311292941",
-    "telegram_url": "https://09gg88.com/?id=311292941"
-  },
   "maychug8.com": {
     "main_url": "https://www.gg8844.com/?id=696026180",
     "messenger_url": "https://www.gg8844.com/?id=696026180",
@@ -393,5 +383,15 @@
     "main_url": "https://gg8854.com/home/register?id=172610166",
     "messenger_url": "https://gg8854.com/home/register?id=172610166",
     "telegram_url": "https://gg8854.com/home/register?id=172610166"
+  },
+  "g8tong.us": {
+    "main_url": "https://www.gg8854.com/?id=859040488",
+    "messenger_url": "https://www.gg8854.com/?id=859040488",
+    "telegram_url": "https://www.gg8854.com/?id=859040488"
+  },
+  "www.g8tong.us": {
+    "main_url": "https://www.gg8854.com/?id=859040488",
+    "messenger_url": "https://www.gg8854.com/?id=859040488",
+    "telegram_url": "https://www.gg8854.com/?id=859040488"
   }
 }
